@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class SubjectManage implements Action<Subject> {
 
     @Override
-    public Subject add() {
+    public Subject add(ArrayList<Subject> listsub) {
         Subject sub = new Subject();
         Scanner s = new Scanner(System.in);
         System.out.print("Enter SubjectID:");
@@ -70,6 +70,11 @@ public class SubjectManage implements Action<Subject> {
         for (int i = 0; i < listsub.size(); i++) {
             System.out.printf("| %-10s | %-10s |%n", listsub.get(i).getsubjectID(),listsub.get(i).getsubjectName());
         }
+    }
+
+    @Override
+    public boolean findID(ArrayList<Subject> items, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

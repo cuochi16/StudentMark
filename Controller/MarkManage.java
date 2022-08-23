@@ -24,36 +24,36 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
         Scanner s = new Scanner(System.in);
         System.out.print("Enter MarkID:");
         mark.setmarkID(s.nextLine());
-        System.out.print("Enter StudentID:");
-        String student =  s.nextLine();
-        int countst = 0;
-        for (int i = 0; i < listst.size(); i++) {
-            if(student.equals(listst.get(i).getID())){
-                mark.setstudent(listst.get(i));
-                break;
+        
+        boolean check = false;
+        do{
+            System.out.print("Enter StudentID:");
+            String student =  s.nextLine();
+            for (int i = 0; i < listst.size(); i++) {
+                if(student.equals(listst.get(i).getID())){
+                    mark.setstudent(listst.get(i));
+                    check = false;
+                }
+                else{
+                    System.out.println("Khong co sv nay! Xin moi nhap lai ID!!!!!1");
+                    check = true;
+                }
             }
-            else{
-                countst++;
+        }while(check);
+        do{
+            System.out.print("Enter SubjectID:");
+            String subject =  s.nextLine();
+            for (int i = 0; i < listsub.size(); i++) {
+                if(subject.equals(listsub.get(i).getsubjectID())){
+                    mark.setsubject(listsub.get(i));
+                    check = false;
+                }
+                else{
+                    System.out.println("Khong co mon hoc nay! Xin moi nhap lai ID!!!!!1");
+                    check = true;
+                }
             }
-        }
-        if(countst==listst.size()){
-            System.out.println("Khong co sinh vien nay");
-        }
-        System.out.print("Enter SubjectID:");
-        String subject =  s.nextLine();
-        int countsub=0;
-        for (int i = 0; i < listsub.size(); i++) {
-            if(subject.equals(listsub.get(i).getsubjectID())){
-                mark.setsubject(listsub.get(i));
-                break;
-            }
-            else{
-                countsub++;
-            }
-        }
-        if(countsub==listsub.size()){
-            System.out.println("Khong co mon hoc nay");
-        }
+        }while(check);
         System.out.print("Enter Mark ( P | M | D ):");
         String marks = s.nextLine();
         if(marks.equals("P")||marks.equals("M")||marks.equals("D")){
@@ -85,41 +85,41 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
                             int choose1 = s.nextInt();
                             switch (choose1) {
                             case 1:
-                                    System.out.print("Edit studentID: ");
                                     s = new Scanner(System.in);
-                                    String student =  s.nextLine();
-                                    int countst = 0;
-                                    for (int j = 0; j < listst.size(); i++) {
-                                        if(student.equals(listst.get(j).getID())){
-                                            mark.setstudent(listst.get(j));
-                                            break;
-                                        }
-                                        else{
-                                            countst++;
-                                        }
-                                    }
-                                    if(countst==listst.size()){
-                                        System.out.println("Khong co sinh vien nay dau ma sua");
-                                    }
+                                    boolean check1 = false;
+                                        do{
+                                            System.out.print("Enter StudentID:");
+                                            String student =  s.nextLine();
+                                            for (int j = 0; j < listst.size(); j++) {
+                                                if(student.equals(listst.get(j).getID())){
+                                                    mark.setstudent(listst.get(j));
+                                                    check1 = false;
+                                                }
+                                                else{
+                                                    System.out.println("Khong co sv nay! Xin moi nhap lai ID!!!!!1");
+                                                    check1 = true;
+                                                }
+                                            }
+                                        }while(check1);
                                     break;
 
                             case 2:
-                                    System.out.println("Edit subjectID");
+                                boolean check2 = false;
+                                do{
+                                    System.out.print("Enter SubjectID:");
                                     String subject =  s.nextLine();
-                                    int countsub = 0;
                                     for (int j = 0; j < listsub.size(); j++) {
                                         if(subject.equals(listsub.get(j).getsubjectID())){
                                             mark.setsubject(listsub.get(j));
-                                            break;
+                                            check2 = false;
                                         }
                                         else{
-                                            countsub++;
+                                            System.out.println("Khong co mon hoc nay! Xin moi nhap lai ID!!!!!1");
+                                            check2 = true;
                                         }
                                     }
-                                    if(countsub==listsub.size()){
-                                        System.out.println("Khong co mon hoc nay");
-                                    }
-                                    break;
+                                }while(check2);
+                                break;
                             case 3:
                                     System.out.println("Edit mark");
                                     s = new Scanner(System.in);
@@ -151,12 +151,13 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
             if(listma.get(i).getmarkID().equals(tempID)){
                 listma.remove(i);
                 System.out.println("Xoa thanh cong diem cua 1 thang ngu");
+                return true;
             }
             else{
                 System.out.println("Co diem nay dau ma xoa!!!");
             }
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -167,13 +168,23 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
     }
 
     @Override
-    public Object add() {
+    public Object add(ArrayList<Marks> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean edit(ArrayList<Marks> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean findID(ArrayList<Marks> items, String id) {
+        for (int i = 0; i < items.size(); i++) {
+            if(id.equals(items.get(i).getmarkID())){
+                return true;
+            }
+        }
+        return false;
     }
   
 }

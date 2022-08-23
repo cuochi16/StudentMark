@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package Controller;
-import Interface.Action;
+import Interface.ActionStudent;
 import StudentManagement.Student;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,30 +17,51 @@ import java.util.logging.Logger;
  *
  * @author nguye
  */
-public class StudentManage implements Action<Student>{
+public class StudentManage implements ActionStudent<Student,Class>{
 
     @Override
-    public Student add() {
+    public Student add(ArrayList<Student> listst,ArrayList<Class> listcl) {
         Student st = new Student();
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter StudentID:");
-        st.setID(s.nextLine());
-        System.out.println("Enter Name:");
+        System.out.print("Enter StudentID:");
+        String id = s.nextLine();
+        while(findID(listst,id)){
+            System.out.println("Da co ID nay");
+            System.out.print("Xin moi nhap lai ID:");
+            id = s.nextLine();
+        }
+        st.setID(id);
+        System.out.print("Enter Name:");
         st.setName(s.nextLine());
-        System.out.println("Enter DoB:");
+        System.out.print("Enter DoB:");
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         try {
             st.setDob(date.parse(s.nextLine()));
         } catch (ParseException ex) {
             Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Enter Email:");
+        System.out.print("Enter Email:");
         st.setEmail(s.nextLine());
-        System.out.println("Enter Numberphone:");
+        System.out.print("Enter Numberphone:");
         st.setPhonenumber(s.nextInt());        
-        System.out.println("Enter Adress:");
+        System.out.print("Enter Adress:");
         s = new Scanner(System.in);
         st.setAddress(s.nextLine());
+        boolean check = false;
+        do{
+            System.out.print("Enter ClassID:");
+            String student =  s.nextLine();
+            for (int i = 0; i < listcl.size(); i++) {
+                if(student.equals(listcl.get(i).())){
+                    st.setClasss(listcl.get(i));
+                    check = false;
+                }
+                else{
+                    System.out.println("Khong co sv nay! Xin moi nhap lai ID!!!!!1");
+                    check = true;
+                }
+            }
+        }while(check);
         return st;
     }
 
@@ -48,7 +70,6 @@ public class StudentManage implements Action<Student>{
         Scanner s = new Scanner(System.in);
         System.out.print("Nhap ID can sua: ");
         String tempID = s.nextLine();
-        int countst = 0;
         for (int i = 0; i < listst.size(); i++) {
             Student student = listst.get(i);
             if(student.getID().equals(tempID)){
@@ -92,7 +113,7 @@ public class StudentManage implements Action<Student>{
                                     student.setPhonenumber(s.nextInt());
                                     break;
                             case 5:
-                                    System.out.println("Edit address");
+                                    System.out.println("Edit address"); 
                                     s = new Scanner(System.in);
                                     student.setAddress(s.nextLine());
                                     break;
@@ -105,15 +126,11 @@ public class StudentManage implements Action<Student>{
                                     break;
                             }
                 }
-            }
-            else{
-                countst++;
-            }
-            if(countst==listst.size()){
-                System.out.println("Khong co sinh vien nay");
+                return true;
             }
         }
-        return true;
+        System.out.println("Khong co sinh vien nay");
+        return false;
     }
 
     @Override
@@ -121,28 +138,41 @@ public class StudentManage implements Action<Student>{
         Scanner s = new Scanner(System.in);
         System.out.print("Nhap ID can xoa: ");
         String tempID = s.nextLine();
-        int countst = 0;
         for (int i = 0; i < listst.size(); i++) {
             if(listst.get(i).getID().equals(tempID)){
                 listst.remove(i);
                 System.out.println("Xoa thanh cong 1 thang ngu");
-            }
-            else{
-                countst++;
-            }
-            if(countst==listst.size()){
-                 System.out.println("Co thang nay dau ma xoa thang dan don!!!");
+                return true;
             }
         }
-        return true;
+        System.out.println("Co thang nay dau ma xoa thang dan don!!!");
+        return false;
     }
 
     @Override
     public void show(ArrayList<Student> listst) {
         for (int i = 0; i < listst.size(); i++) {
-            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listst.get(i).getID(),listst.get(i).getName(),listst.get(i).getDob(),listst.get(i).getEmail(),listst.get(i).getPhonenumber(),listst.get(i).getAddress());
+            Date date = listst.get(i).getDob();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(date);
+            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listst.get(i).getID(),listst.get(i).getName(),strDate,listst.get(i).getEmail(),listst.get(i).getPhonenumber(),listst.get(i).getAddress());
         }
         
+    }
+
+    @Override
+    public boolean findID(ArrayList<Student> items, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean edit(ArrayList<Student> items, ArrayList<Class> items1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object add(ArrayList<Student> items) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

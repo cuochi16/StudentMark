@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public interface Action<T> {
 
-    public Object add();
+    public Object add(ArrayList<T> items);
     public boolean edit(ArrayList<T> items);
     public boolean delete(ArrayList<T> items);
     public void show(ArrayList<T> items);
+    public boolean findID(ArrayList<T> items, String id);
     
 }

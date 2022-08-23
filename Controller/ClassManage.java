@@ -17,11 +17,17 @@ import java.util.Scanner;
 public class ClassManage implements Action<Class>{
 
     @Override
-    public Class add() {
+    public Class add(ArrayList<Class> listcl) {
         Class cl = new Class();
         Scanner s = new Scanner(System.in);
         System.out.print("Enter ClassID:");
-        cl.setclassID(s.nextLine());
+        String id = s.nextLine();
+        while(findID(listcl,id)){
+            System.out.println("Da co ID nay");
+            System.out.print("Xin moi nhap lai ID:");
+            id = s.nextLine();
+        }
+        cl.setclassID(id);
         System.out.print("Enter ClassName:");
         cl.setclassName(s.nextLine());
         return cl;
@@ -32,28 +38,21 @@ public class ClassManage implements Action<Class>{
         Scanner s = new Scanner(System.in);
         System.out.print("Nhap ID can sua: ");
         String classID = s.nextLine();
-        int numclass=0;
         for (int i = 0; i < listcl.size(); i++) {
             if(listcl.get(i).getclassID().equals(classID)){
                 System.out.print("Nhap ten can sua:");
                 listcl.get(i).setclassName(s.nextLine());
                 System.out.println("Sua thanh cong!!");
-                break;
-            }
-            else{
-                numclass++;
+                return true;
             }
         }
-        if(numclass==listcl.size()){
-            System.out.println("Khong co lop nay");
-        }
-        return true;
+        System.out.println("Khong co lop nay");
+        return false;
     }
 
     @Override
     public boolean delete(ArrayList<Class> listcl) {
         Scanner s = new Scanner(System.in);
-        int numclass=0;
         System.out.print("Nhap ID can xoa: ");
         String classID = s.nextLine();
         for (int i = 0; i < listcl.size(); i++) {
@@ -61,15 +60,10 @@ public class ClassManage implements Action<Class>{
                 System.out.print("Nhap ten can sua:");
                 listcl.get(i).setclassName(s.nextLine());
                 System.out.println("Xoa thanh cong!!");
-                break;
-            }
-            else{
-                numclass++;
+                return true;
             }
         }
-        if(numclass==listcl.size()){
-            System.out.println("Khong co lop nay dau ma xoa");
-        }
+        System.out.println("Khong co lop nay dau ma xoa");
         return true;
     }
 
@@ -78,6 +72,16 @@ public class ClassManage implements Action<Class>{
         for (int i = 0; i < listcl.size(); i++) {
             System.out.printf("| %-10s | %-10s |%n", listcl.get(i).getclassID(),listcl.get(i).getclassName());
         }
+    }
+
+    @Override
+    public boolean findID(ArrayList<Class> list, String id) {
+        for (int i = 0; i < list.size(); i++) {
+            if(id.equals(list.get(i).getclassID())){
+                return true;
+            }
+        }
+        return false;
     }
 
     

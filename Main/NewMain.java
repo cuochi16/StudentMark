@@ -92,7 +92,7 @@ public class NewMain {
 			switch (choosead) {
 			case 1:
 				System.out.println("Add");
-                                admin.add(adm.add());
+                                admin.add(adm.add(admin));
 				break;
 			case 2:
 				System.out.println("Edit");
@@ -133,7 +133,7 @@ public class NewMain {
             switch (choosead) {
             case 1:
                     System.out.println("Add");
-                    student.add(stm.add());
+                    student.add(stm.add(student));
                     break;   
             case 2:
                     System.out.println("Edit");
@@ -174,7 +174,7 @@ public class NewMain {
             switch (choosead) {
             case 1:
                     System.out.println("Add");
-                    subject.add(subm.add());
+                    subject.add(subm.add(subject));
                     break;   
             case 2:
                     System.out.println("Edit");
@@ -215,7 +215,7 @@ public class NewMain {
             switch (choosecl) {
             case 1:
                     System.out.println("Add");
-                    classs.add(clm.add());
+                    classs.add(clm.add(classs));
                     break;   
             case 2:
                     System.out.println("Edit");

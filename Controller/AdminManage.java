@@ -21,11 +21,16 @@ import java.util.logging.Logger;
 public class AdminManage implements Action<Admin> {
 
     @Override
-    public Admin add() {
+    public Admin add(ArrayList<Admin> listad) {
         Admin ad = new Admin();
         Scanner s = new Scanner(System.in);
         System.out.print("Enter AdminID:");
-        ad.setID(s.nextLine());
+        String id = s.nextLine();
+        while(findID(listad,id)){
+            System.out.println("Da co ID nay");
+            System.out.print("Xin moi nhap lai ID:");
+            id = s.nextLine();
+        }
         System.out.print("Enter Name:");
         ad.setName(s.nextLine());
         System.out.print("Enter Email:");
@@ -78,13 +83,14 @@ public class AdminManage implements Action<Admin> {
                                     System.out.println("Thang ngu co dau ma chon");
                                     break;
                             }
+                            return true;
                 }
             }
             else{
                 System.out.println("Khong tim thay ID nay");
             }
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -113,6 +119,16 @@ public class AdminManage implements Action<Admin> {
             System.out.printf("| %-3s | %-15s | %-30s | %-15s | %-15s |%n",i+1, listad.get(i).getID(),listad.get(i).getName(),listad.get(i).getEmail(),listad.get(i).getPosition());
         }
         
+    }
+
+    @Override
+    public boolean findID(ArrayList<Admin> listad, String id) {
+        for (int i = 0; i < listad.size(); i++) {
+            if(id.equals(listad.get(i).getID())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
