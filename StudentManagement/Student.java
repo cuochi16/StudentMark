@@ -16,48 +16,37 @@ public class Student extends Person {
     private int phonenumber;
     private String address;
     private Class classs;
- 
-//      public Student(String studentId, String studentName, Date dob, String email, int phonenumber, String address)
-//      {
-//      studentId = Id;
-//      studentName = Name;
-//      this.dob = dob;
-//      this.email= email;
-//      this.phonenumber = phonenumber;
-//      this.address= address;
-//      }
 
-      public Date getDoB()
-      {
+    public Date getDob() {
         return dob;
-      }
-      public void setDoB(Date a)
-      {
-        dob=a;
-      }
-      public int getPhonenumber()
-      {
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public int getPhonenumber() {
         return phonenumber;
-      }
-      public void setPhonenumber(int a)
-      {
-        phonenumber=a;
-      }
-      public String getAddress()
-      {
+    }
+
+    public void setPhonenumber(int phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getAddress() {
         return address;
-      }
-      public void setAddress(String a)
-      {
-        address=a;
-      }
-      public Class getClass()
-      {
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Class getClasss() {
         return classs;
-      }
-      public void setClass(Class a)
-      {
-        classs=a;
-      }
-      
+    }
+
+    public void setClasss(Class classs) {
+        this.classs = classs;
+    }
+
 }

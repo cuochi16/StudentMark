@@ -28,7 +28,7 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
         String student =  s.nextLine();
         int countst = 0;
         for (int i = 0; i < listst.size(); i++) {
-            if(student.equals(listst.get(i).getstudentId())){
+            if(student.equals(listst.get(i).getID())){
                 mark.setstudent(listst.get(i));
                 break;
             }
@@ -90,7 +90,7 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
                                     String student =  s.nextLine();
                                     int countst = 0;
                                     for (int j = 0; j < listst.size(); i++) {
-                                        if(student.equals(listst.get(j).getstudentId())){
+                                        if(student.equals(listst.get(j).getID())){
                                             mark.setstudent(listst.get(j));
                                             break;
                                         }
@@ -162,7 +162,7 @@ public class MarkManage implements ActionMark<Marks,Student,Subject>{
     @Override
     public void show(ArrayList<Marks> listma) {
         for (int i = 0; i < listma.size(); i++) {
-            System.out.printf("| %-15s | %-15s | %-15s | %-15s| %-15s |%n", listma.get(i).getmarkID(),listma.get(i).getstudent().getstudentId(),listma.get(i).getstudent().getstudentName(),listma.get(i).getsubject().getsubjectName(),listma.get(i).getmark());
+            System.out.printf("| %-15s | %-15s | %-15s | %-15s| %-15s |%n", listma.get(i).getmarkID(),listma.get(i).getstudent().getID(),listma.get(i).getstudent().getName(),listma.get(i).getsubject().getsubjectName(),listma.get(i).getmark());
         }
     }
 

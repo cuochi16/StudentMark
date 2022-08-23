@@ -23,23 +23,23 @@ public class StudentManage implements Action<Student>{
         Student st = new Student();
         Scanner s = new Scanner(System.in);
         System.out.println("Enter StudentID:");
-        st.setstudentId(s.nextLine());
+        st.setID(s.nextLine());
         System.out.println("Enter Name:");
-        st.setstudentName(s.nextLine());
+        st.setName(s.nextLine());
         System.out.println("Enter DoB:");
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            st.setdob(date.parse(s.nextLine()));
+            st.setDob(date.parse(s.nextLine()));
         } catch (ParseException ex) {
             Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Enter Email:");
-        st.setemail(s.nextLine());
+        st.setEmail(s.nextLine());
         System.out.println("Enter Numberphone:");
-        st.setphonenumber(s.nextInt());        
+        st.setPhonenumber(s.nextInt());        
         System.out.println("Enter Adress:");
         s = new Scanner(System.in);
-        st.setaddress(s.nextLine());
+        st.setAddress(s.nextLine());
         return st;
     }
 
@@ -51,7 +51,7 @@ public class StudentManage implements Action<Student>{
         int countst = 0;
         for (int i = 0; i < listst.size(); i++) {
             Student student = listst.get(i);
-            if(student.getstudentId().equals(tempID)){
+            if(student.getID().equals(tempID)){
                 boolean a = true;
                 while(a)
                 {
@@ -69,14 +69,14 @@ public class StudentManage implements Action<Student>{
                                     System.out.print("Edit name: ");
                                     s = new Scanner(System.in);
                                     String temp = s.nextLine();
-                                    student.setstudentName(temp);
+                                    student.setName(temp);
                                     break;
 
                             case 2:
                                     System.out.println("Edit DoB");
                                     SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
                                     try {
-                                        student.setdob(date.parse(s.nextLine()));
+                                        student.setDob(date.parse(s.nextLine()));
                                     } catch (ParseException ex) {
                                         Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -84,17 +84,17 @@ public class StudentManage implements Action<Student>{
                             case 3:
                                     System.out.println("Edit email");
                                     s = new Scanner(System.in);
-                                    student.setemail(s.nextLine());
+                                    student.setEmail(s.nextLine());
                                     break;
                             case 4:
                                     System.out.println("Edit phonenumber");
                                     s = new Scanner(System.in);
-                                    student.setphonenumber(s.nextInt());
+                                    student.setPhonenumber(s.nextInt());
                                     break;
                             case 5:
                                     System.out.println("Edit address");
                                     s = new Scanner(System.in);
-                                    student.setaddress(s.nextLine());
+                                    student.setAddress(s.nextLine());
                                     break;
                             case 6:
                                     System.out.println("Exit");
@@ -123,7 +123,7 @@ public class StudentManage implements Action<Student>{
         String tempID = s.nextLine();
         int countst = 0;
         for (int i = 0; i < listst.size(); i++) {
-            if(listst.get(i).getstudentId().equals(tempID)){
+            if(listst.get(i).getID().equals(tempID)){
                 listst.remove(i);
                 System.out.println("Xoa thanh cong 1 thang ngu");
             }
@@ -140,7 +140,7 @@ public class StudentManage implements Action<Student>{
     @Override
     public void show(ArrayList<Student> listst) {
         for (int i = 0; i < listst.size(); i++) {
-            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listst.get(i).getstudentId(),listst.get(i).getstudentName(),listst.get(i).getdob(),listst.get(i).getemail(),listst.get(i).getphonenumber(),listst.get(i).getaddress());
+            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listst.get(i).getID(),listst.get(i).getName(),listst.get(i).getDob(),listst.get(i).getEmail(),listst.get(i).getPhonenumber(),listst.get(i).getAddress());
         }
         
     }

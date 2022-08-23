@@ -32,16 +32,20 @@ public class ClassManage implements Action<Class>{
         Scanner s = new Scanner(System.in);
         System.out.print("Nhap ID can sua: ");
         String classID = s.nextLine();
+        int numclass=0;
         for (int i = 0; i < listcl.size(); i++) {
-            if(listcl.get(i).equals(classID)){
+            if(listcl.get(i).getclassID().equals(classID)){
                 System.out.print("Nhap ten can sua:");
                 listcl.get(i).setclassName(s.nextLine());
                 System.out.println("Sua thanh cong!!");
                 break;
             }
             else{
-                System.out.println("Khong co thang nay dau ma sua!!!");
+                numclass++;
             }
+        }
+        if(numclass==listcl.size()){
+            System.out.println("Khong co lop nay");
         }
         return true;
     }
@@ -49,18 +53,22 @@ public class ClassManage implements Action<Class>{
     @Override
     public boolean delete(ArrayList<Class> listcl) {
         Scanner s = new Scanner(System.in);
+        int numclass=0;
         System.out.print("Nhap ID can xoa: ");
         String classID = s.nextLine();
         for (int i = 0; i < listcl.size(); i++) {
-            if(listcl.get(i).equals(classID)){
+            if(listcl.get(i).getclassID().equals(classID)){
                 System.out.print("Nhap ten can sua:");
                 listcl.get(i).setclassName(s.nextLine());
                 System.out.println("Xoa thanh cong!!");
                 break;
             }
             else{
-                System.out.println("Khong co thang nay dau ma xoa!!!");
+                numclass++;
             }
+        }
+        if(numclass==listcl.size()){
+            System.out.println("Khong co lop nay dau ma xoa");
         }
         return true;
     }
