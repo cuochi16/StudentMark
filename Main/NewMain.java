@@ -56,7 +56,7 @@ public class NewMain {
                     MenuAdmin(adm, admin);
                     break;
             case 2:
-                    MenuStudent(stm, student);
+                    MenuStudent(stm, student, classs);
                     break;
             case 3:
                     MenuSubject(subm, subject);
@@ -116,7 +116,7 @@ public class NewMain {
 			}
         }
     }
-    private static void MenuStudent(StudentManage stm, ArrayList<Student> student){
+    private static void MenuStudent(StudentManage stm, ArrayList<Student> student, ArrayList<Class> classs){
         Scanner s = new Scanner(System.in);
         boolean menuad = true;
         while(menuad)
@@ -133,11 +133,11 @@ public class NewMain {
             switch (choosead) {
             case 1:
                     System.out.println("Add");
-                    student.add(stm.add(student));
+                    student.add(stm.add(student,classs));
                     break;   
             case 2:
                     System.out.println("Edit");
-                    stm.edit(student);
+                    stm.edit(student,classs);
                     break;
             case 3:
                     System.out.println("Delete");
@@ -145,7 +145,7 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address");
+                    System.out.printf("| %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address","Class");
                     stm.show(student);
                     break;
             case 5:
