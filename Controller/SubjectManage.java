@@ -20,9 +20,9 @@ public class SubjectManage implements Action<Subject> {
     public Subject add(ArrayList<Subject> listsub) {
         Subject sub = new Subject();
         Scanner s = new Scanner(System.in);
-        System.out.print("Enter SubjectID:");
+        System.out.print("Enter SubjectID: ");
         sub.setsubjectID(s.nextLine());
-        System.out.print("Enter SubjectName:");
+        System.out.print("Enter SubjectName: ");
         sub.setsubjectName(s.nextLine());
         return sub;
     }
@@ -33,42 +33,38 @@ public class SubjectManage implements Action<Subject> {
         System.out.print("Nhap ID can sua: ");
         String subjectID = s.nextLine();
         for (int i = 0; i < listsub.size(); i++) {
-            if(listsub.get(i).equals(subjectID)){
-                System.out.print("Nhap ten can sua:");
+            if(listsub.get(i).getsubjectID().equals(subjectID)){
+                System.out.print("Nhap ten can sua: ");
                 listsub.get(i).setsubjectName(s.nextLine());
                 System.out.println("Sua thanh cong!!");
-                break;
-            }
-            else{
-                System.out.println("Khong co thang nay dau ma sua!!!");
+                return true;
             }
         }
-        return true;
+        System.out.println("Khong co mon hoc nay");
+        return false;
     }
 
     @Override
     public boolean delete(ArrayList<Subject> listsub) {
         Scanner s = new Scanner(System.in);
-        System.out.print("Nhap ID can xoa: ");
+        System.out.print("Nhap ID can sua: ");
         String subjectID = s.nextLine();
         for (int i = 0; i < listsub.size(); i++) {
-            if(listsub.get(i).equals(subjectID)){
+            if(listsub.get(i).getsubjectID().equals(subjectID)){
                 System.out.print("Nhap ten can sua:");
-                listsub.get(i).setsubjectName(s.nextLine());
+                listsub.remove(i);
                 System.out.println("Xoa thanh cong!!");
-                break;
-            }
-            else{
-                System.out.println("Khong co thang nay dau ma xoa!!!");
+                return true;
             }
         }
-        return true;
+        System.out.println("Khong co mon hoc nay");
+        return false;
     }
 
     @Override
     public void show(ArrayList<Subject> listsub) {
         for (int i = 0; i < listsub.size(); i++) {
-            System.out.printf("| %-10s | %-10s |%n", listsub.get(i).getsubjectID(),listsub.get(i).getsubjectName());
+            System.out.printf("| %-3s | %-10s | %-10s |%n",i+1, listsub.get(i).getsubjectID(),listsub.get(i).getsubjectName());
         }
     }
 

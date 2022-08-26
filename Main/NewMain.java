@@ -53,22 +53,31 @@ public class NewMain {
             int choose = s.nextInt();
             switch (choose) {
             case 1:
+                    System.out.println("You have selected Admin Manage");
                     MenuAdmin(adm, admin);
                     break;
             case 2:
+                    System.out.println("You have selected Student Manage");
                     MenuStudent(stm, student, classs);
                     break;
             case 3:
+                    System.out.println("You have selected Subject Manage");
                     MenuSubject(subm, subject);
                     break;
             case 4:
+                    System.out.println("You have selected Class Manage");
                     MenuClass(clm, classs);
                     break;
             case 5:
+                    System.out.println("You have selected Mark Manage");
                     MenuMark(markm, mark, student, subject);
                     break;
+            case 6:
+                    System.out.println("Goodbye!!");
+                    System.exit(0);
+                    break;
             default:
-                    System.out.println("Thang ngu co dau ma chon");
+                    System.out.println("This option is not available! Please re-enter.");
                     break;
             }
         }
@@ -104,7 +113,7 @@ public class NewMain {
 				break;
                         case 4:
 				System.out.println("Show");
-                                System.out.printf("| %-3s | %-10s | %-30s | %-20s | %-15s |%n","ID","Name","DoB","Email","PhoneNumber","Address");
+                                System.out.printf("| %-3s | %-10s | %-20s | %-15s | %-15s |%n","STT","ID","Name","Email","Position");
                                 adm.show(admin);
 				break;
 			case 5:
@@ -145,7 +154,7 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("| %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address","Class");
+                    System.out.printf("| %-3s | %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n","STT","ID","Name","DoB","Email","PhoneNumber","Address","Class");
                     stm.show(student);
                     break;
             case 5:
@@ -186,7 +195,7 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("| %-10s | %-10s |%n","ID","Name");
+                    System.out.printf("| %-3s | %-10s | %-10s |%n","STT","ID","Name");
                     subm.show(subject);
                     break;
             case 5:
@@ -227,7 +236,7 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("| %-10s | %-10s |%n","ID","Name");
+                    System.out.printf("| %-3s | %-10s | %-10s |%n","STT","ID","Name");
                     clm.show(classs);
                     break;
             case 5:
@@ -268,7 +277,7 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("| %-15s | %-15s | %-15s | %-15s| %-15s |%n","ID","StudentID","StudentName","SubjectName","Mark");
+                    System.out.printf("| %-3s | %-15s | %-15s | %-15s | %-15s| %-15s |%n","STT","ID","StudentID","StudentName","SubjectName","Mark");
                     markm.show(listma);
                     break;
             case 5:

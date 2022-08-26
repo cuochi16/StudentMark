@@ -14,4 +14,5 @@ import java.util.ArrayList;
 public interface ActionStudent<T1,T2> extends Action<T1> {
     public Object add(ArrayList<T1> items, ArrayList<T2> items1);
     public boolean edit(ArrayList<T1> items, ArrayList<T2> items1);
+    public boolean search(ArrayList<T1> items, ArrayList<T2> items1);
 }

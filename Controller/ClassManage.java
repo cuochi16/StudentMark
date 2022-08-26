@@ -57,20 +57,18 @@ public class ClassManage implements Action<Class>{
         String classID = s.nextLine();
         for (int i = 0; i < listcl.size(); i++) {
             if(listcl.get(i).getclassID().equals(classID)){
-                System.out.print("Nhap ten can sua:");
-                listcl.get(i).setclassName(s.nextLine());
-                System.out.println("Xoa thanh cong!!");
+                listcl.remove(i);
                 return true;
             }
         }
         System.out.println("Khong co lop nay dau ma xoa");
-        return true;
+        return false;
     }
 
     @Override
     public void show(ArrayList<Class> listcl) {
         for (int i = 0; i < listcl.size(); i++) {
-            System.out.printf("| %-10s | %-10s |%n", listcl.get(i).getclassID(),listcl.get(i).getclassName());
+            System.out.printf("| %-3s | %-10s | %-10s |%n",i+1, listcl.get(i).getclassID(),listcl.get(i).getclassName());
         }
     }
 

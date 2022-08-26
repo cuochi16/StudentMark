@@ -116,7 +116,7 @@ public class AdminManage implements Action<Admin> {
     @Override
     public void show(ArrayList<Admin> listad) {
         for (int i = 0; i < listad.size(); i++) {
-            System.out.printf("| %-3s | %-15s | %-30s | %-15s | %-15s |%n",i+1, listad.get(i).getID(),listad.get(i).getName(),listad.get(i).getEmail(),listad.get(i).getPosition());
+            System.out.printf("| %-3s | %-10s | %-20s | %-15s | %-15s |%n",i+1, listad.get(i).getID(),listad.get(i).getName(),listad.get(i).getEmail(),listad.get(i).getPosition());
         }
         
     }

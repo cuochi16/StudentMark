@@ -10,7 +10,6 @@ import StudentManagement.Class;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +33,7 @@ public class StudentManage implements ActionStudent<Student,Class>{
         st.setID(id);
         System.out.print("Enter Name:");
         st.setName(s.nextLine());
-        System.out.print("Enter DoB:");
+        System.out.print("Enter DoB (dd/MM/yyyy):");
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         try {
             st.setDob(date.parse(s.nextLine()));
@@ -48,19 +47,21 @@ public class StudentManage implements ActionStudent<Student,Class>{
         System.out.print("Enter Adress:");
         s = new Scanner(System.in);
         st.setAddress(s.nextLine());
-        boolean check = true;
-        do{
-            System.out.print("Enter ClassID:");
-            String classid =  s.nextLine();
-            for (int i = 0; i < listcl.size(); i++) {
-                if(classid.equals(listcl.get(i).getclassID())){                    
-                    st.setClasss(listcl.get(i));
-                    check = false;
-                    break;
-                }
+        System.out.print("Enter ClassID:");
+        String classid =  s.nextLine();
+        int check = 0;
+        for (int i = 0; i < listcl.size(); i++) {
+            if(classid.equals(listcl.get(i).getclassID())){                    
+                st.setClasss(listcl.get(i));
+                break;
             }
-            
-        }while(check);
+            else{
+                check++;
+            }
+        }
+        if(check==listcl.size()){
+            System.out.println("Khong co lop nay!");
+        }
         return st;
     }
 
@@ -90,7 +91,7 @@ public class StudentManage implements ActionStudent<Student,Class>{
         for (int i = 0; i < listst.size(); i++) {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String strDate = formatter.format(listst.get(i).getDob());
-            System.out.printf("| %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n", listst.get(i).getID(),listst.get(i).getName(),strDate,listst.get(i).getEmail(),listst.get(i).getPhonenumber(),listst.get(i).getAddress(),listst.get(i).getClasss().getclassName());
+            System.out.printf("| %-3s | %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n",i+1, listst.get(i).getID(),listst.get(i).getName(),strDate,listst.get(i).getEmail(),listst.get(i).getPhonenumber(),listst.get(i).getAddress(),listst.get(i).getClasss().getclassName());
         }
         
     }
@@ -140,7 +141,7 @@ public class StudentManage implements ActionStudent<Student,Class>{
                                     break;
 
                             case 2:
-                                    System.out.println("Edit DoB");
+                                    System.out.print("Edit DoB (dd/MM/yyyy):");
                                     SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
                                     try {
                                         student.setDob(date.parse(s.nextLine()));
@@ -149,17 +150,17 @@ public class StudentManage implements ActionStudent<Student,Class>{
                                     }
                                     break;
                             case 3:
-                                    System.out.println("Edit email");
+                                    System.out.print("Edit email: ");
                                     s = new Scanner(System.in);
                                     student.setEmail(s.nextLine());
                                     break;
                             case 4:
-                                    System.out.println("Edit phonenumber");
+                                    System.out.print("Edit phonenumber:");
                                     s = new Scanner(System.in);
                                     student.setPhonenumber(s.nextInt());
                                     break;
                             case 5:
-                                    System.out.println("Edit address"); 
+                                    System.out.print("Edit address:"); 
                                     s = new Scanner(System.in);
                                     student.setAddress(s.nextLine());
                                     break;
@@ -194,6 +195,12 @@ public class StudentManage implements ActionStudent<Student,Class>{
             }
         }
         System.out.println("Khong co sinh vien nay");
+        return false;
+    }
+
+    @Override
+    public boolean search(ArrayList<Student> items, ArrayList<Class> items1) {
+        
         return false;
     }
 
